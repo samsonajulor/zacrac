@@ -14,7 +14,7 @@
     "build-ts": "tsc",
     "format": "cross-env prettier --write ./**/*.{js,ts,md,json} --config ./.prettierrc",
     "deploy": "serverless deploy",
-    "remove": "serverless remove"
+    "rm": "serverless remove"
   },
   "keywords": [],
   "author": "",
