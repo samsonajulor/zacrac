@@ -8,7 +8,7 @@ const { apiResponse } = Toolbox;
 
 async function updateUser(req: Request, res: Response) {
   try {
-    let appUser = req.user as any;
+    let appUser = res.locals.user;
 
     await userService.updateUser(appUser._id, req.body);
 

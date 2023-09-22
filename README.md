@@ -28,3 +28,10 @@
 7. **deploy**
     - Command: `yarn deploy`
     - Description: Deploys the application from serverless.yml.
+
+endpoints:
+  ANY - https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev
+  ANY - https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev/{proxy+}
+functions:
+  app: zacrac-serverless-dev-app (65 MB)
+  

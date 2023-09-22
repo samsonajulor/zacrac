@@ -8,7 +8,7 @@ const { apiResponse } = Toolbox;
 
 async function resetPin(req: Request, res: Response) {
   try {
-    let appUser = req.user as any;
+    let appUser = res.locals.user;
     const { pin, newPin } = req.body;
 
     if (!bcrypt.compareSync(String(pin), appUser.pin)) {

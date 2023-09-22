@@ -2,6 +2,7 @@ import app from './index';
 import mongoose from 'mongoose';
 import { logger } from './config';
 import { AddressInfo } from 'net';
+import serverless from 'serverless-http';
 
 async function startApp() {
   try {
@@ -18,3 +19,5 @@ async function startApp() {
 }
 
 startApp();
+
+export const handler = serverless(app);

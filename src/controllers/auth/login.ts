@@ -8,10 +8,12 @@ import { Toolbox } from '../../utils';
 
 const { apiResponse } = Toolbox;
 
-const { APP_BASE_URL } = env;
+const { PROD_BASE_URL, DEV_BASE_URL, NODE_ENV } = env;
 
 async function login(req: Request, res: Response) {
   try {
+    const APP_BASE_URL = NODE_ENV === 'production' ? PROD_BASE_URL as string : DEV_BASE_URL as string;
+
     let user = await User.findOne({
       email: req.body.email,
     });

@@ -42,7 +42,7 @@ const Authentications = {
           'authenticate',
           StatusCode.UNAUTHORIZED
         );
-      req.user = user;
+      res.locals.user = user;
       next();
     } catch (error: any) {
       return apiResponse(

@@ -7,7 +7,7 @@ const { apiResponse } = Toolbox;
 
 async function upload(req: Request, res: Response) {
   try {
-    const appUser = req.user as any;
+    const appUser = res.locals.user;
 
     const image = req.file?.path ? req.file?.path : '';
 
