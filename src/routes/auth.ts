@@ -4,7 +4,7 @@ import { UserMiddleware } from '../middleware';
 
 const router = express.Router();
 
-const { signup, getUser, login, newPassword, verifyToken, softDeleteUser } = AuthController;
+const { signup, getUser, login, updatePassword, verifyToken, softDeleteUser } = AuthController;
 const {
   inspectRegisterUser,
   inspectAuthRoutes,
@@ -15,7 +15,7 @@ const {
 
 router.post('/signup', inspectRegisterUser, signup);
 router.post('/login', inspectAuthRoutes, login);
-router.post('/password', inspectAuthRoutes, newPassword);
+router.post('/password', inspectAuthRoutes, updatePassword);
 router.get('/verify', inspectVerifyToken, verifyToken);
 router.patch('/status', inspectToggleActivationStatus, softDeleteUser);
 router.get('/me', inspectGetUser, getUser);

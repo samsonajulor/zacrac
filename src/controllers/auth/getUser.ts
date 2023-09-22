@@ -16,7 +16,7 @@ async function getUser(req: Request, res: Response) {
       userDetails = await userService.getUserByEmail(email as string);
     } else if (username) {
       userDetails = await userService.getUserByUsername(username as string);
-    } else {
+    } else if (userId) {
       if (!mongoose.Types.ObjectId.isValid(userId as string)) {
         return apiResponse(
           res,
@@ -28,6 +28,15 @@ async function getUser(req: Request, res: Response) {
         );
       }
       userDetails = await userService.getUserById(userId as string);
+    } else {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.BAD_REQUEST,
+        ResponseCode.FAILURE,
+        {},
+        'invalid query'
+      );
     }
 
     if (!userDetails) {

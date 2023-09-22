@@ -1,11 +1,11 @@
-import resetPin from './resetPin';
+import resetPassword from './resetPassword';
 import upload from './upload';
 import hardDeleteUser from './hardDeleteUser';
 import getUsers from './getUsers';
 import updateUser from './updateUser';
 
 const UserController = {
-  resetPin,
+  resetPassword,
   upload,
   hardDeleteUser,
   getUsers,

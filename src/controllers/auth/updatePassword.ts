@@ -6,26 +6,32 @@ import { Toolbox } from '../../utils';
 
 const { apiResponse } = Toolbox;
 
-async function resetPin(req: Request, res: Response) {
+async function updatePassword(req: Request, res: Response) {
   try {
-    let appUser = res.locals.user;
-    const { pin, newPin } = req.body;
-
-    if (!bcrypt.compareSync(String(pin), appUser.pin)) {
-      throw new Error('Invalid credentials');
-    }
-
-    await User.updateOne(
-      { _id: appUser.id },
-      { pin: bcrypt.hashSync(String(newPin), 10) },
-      { runValidators: true }
+    const { password, email } = req.body;
+    if (!password) throw new Error('Please include password');
+    const user = await User.findOneAndUpdate(
+      { email },
+      { password: bcrypt.hashSync(String(password), 10) },
+      { new: true, runValidators: true }
     );
+    if (!user)
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.NOT_FOUND,
+        ResponseCode.FAILURE,
+        {},
+        'user not found'
+      );
+
     return apiResponse(
       res,
       ResponseType.SUCCESS,
       StatusCode.OK,
       ResponseCode.SUCCESS,
-      'pin reset success.'
+      {},
+      'Password reset successful'
     );
   } catch (error) {
     return apiResponse(
@@ -39,4 +45,4 @@ async function resetPin(req: Request, res: Response) {
   }
 }
 
-export default resetPin;
+export default updatePassword;
