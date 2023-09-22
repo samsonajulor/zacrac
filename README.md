@@ -252,21 +252,3 @@ This will delete the AWS resources created by the Serverless Framework.
 4. Update the user's password with the new hashed password using `bcrypt`.
 5. Return a success response indicating that the password reset was successful.
 
-
-### User Image Upload
-
-**HTTP Method:** POST <br/>
-**Route:** /users/upload
-
-**Functionality:**
-
-- Allows users to upload an image to their profile.
-
-**Steps:**
-
-1. Retrieve the user information from the `res.locals` object, which is expected to be populated by authentication middleware.
-2. Check if an image file was included in the request (`req.file.path`).
-3. If no image file is found, return a bad request response indicating that the image upload failed.
-4. Update the user's profile with the path to the uploaded image.
-5. Return a success response with the updated user information.
-
