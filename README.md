@@ -16,12 +16,12 @@
 2. **Install Dependencies:**
 
    ```bash
-   npm install
+   yarn
    ```
 
-3. 
+PS: This app was bundled with serverless-http package
 
-4. **Deploy to AWS Lambda:**
+3. **Deploy to AWS Lambda:**
 
    Deploy your Lambda function to AWS using the Serverless Framework:
 
@@ -29,7 +29,7 @@
    yarn deploy
    ```
 
-5. **Access Lambda Function:**
+5. **Access Lambda Function via the generated url:**
 [APP_URL](https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev)
    
 
@@ -68,7 +68,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Signup
 
-**HTTP Method:** POST
+**HTTP Method:** POST <br/>
 **Route:** /auth/signup
 
 **Functionality:**
@@ -88,7 +88,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Login
 
-**HTTP Method:** POST
+**HTTP Method:** POST <br/>
 **Route:** /auth/login
 
 **Functionality:**
@@ -110,7 +110,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Token Verification
 
-**HTTP Method:** GET
+**HTTP Method:** GET <br/>
 **Route:** /auth/verify
 
 **Functionality:**
@@ -130,7 +130,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Retrieval
 
-**HTTP Method:** GET
+**HTTP Method:** GET <br/>
 **Route:** /auth/me
 
 **Functionality:**
@@ -151,7 +151,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User List Retrieval
 
-**HTTP Method:** GET
+**HTTP Method:** GET <br/>
 **Route:** /users
 
 **Functionality:**
@@ -167,7 +167,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Update
 
-**HTTP Method:** PUT
+**HTTP Method:** PUT <br/>
 **Route:** /users
 
 **Functionality:**
@@ -182,7 +182,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Soft Deletion
 
-**HTTP Method:** PATCH
+**HTTP Method:** PATCH <br/>
 **Route:** /auth/status
 
 **Functionality:**
@@ -201,7 +201,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Hard Deletion
 
-**HTTP Method:** DELETE
+**HTTP Method:** DELETE <br/>
 **Route:** /users/delete
 
 **Functionality:**
@@ -221,7 +221,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Password Update
 
-**HTTP Method:** POST
+**HTTP Method:** POST <br/>
 **Route:** /auth/password
 
 **Functionality:**
@@ -238,7 +238,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Password Reset
 
-**HTTP Method:** POST
+**HTTP Method:** POST <br/>
 **Route:** /users/reset
 
 **Functionality:**
@@ -256,7 +256,7 @@ This will delete the AWS resources created by the Serverless Framework.
 
 ### User Image Upload
 
-**HTTP Method:** POST
+**HTTP Method:** POST <br/>
 **Route:** /users/upload
 
 **Functionality:**
