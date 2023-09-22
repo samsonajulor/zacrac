@@ -41,18 +41,15 @@ app.use(express.static('assets'));
 app.use('/v1.0', routes);
 
 //greet
-app.get('/', (req: Request, res: Response) => {
-  res.send(
-    `${
-      process.env.environment === 'production'
-        ? 'Welcome to zacrac production environment'
-        : 'Welcome to zacrac staging environment'
-    }`
-  );
+app.get('/api', (req: Request, res: Response) => {
+  res.redirect(env.POSTMAN_URL as string);
 });
 
 app.all('/*', (req: Request, res: Response, next) => {
-  next(new Error('Resource unavailable'));
+  res.status(404).send({
+    success: false,
+    message: 'Route not found',
+  });
 });
 
 app.use((err: any, req: Request, res: Response) => {

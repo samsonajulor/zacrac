@@ -1,9 +1,4 @@
 import { Request, Response } from 'express';
-import path from 'path';
-import fs from 'fs';
-import moment from 'moment';
-import { customAlphabet } from 'nanoid';
-import { numbers } from 'nanoid-dictionary';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../../models/User';
@@ -19,9 +14,9 @@ async function signup(req: Request, res: Response) {
   try {
     const { phoneNumber, email, password, username } = req.body as any;
 
-    const existingUser = await userService.getUserByEmail(email);
+    const existingEmail = await userService.getUserByEmail(email);
 
-    if (existingUser) {
+    if (existingEmail) {
       return apiResponse(
         res,
         ResponseType.FAILURE,
@@ -29,6 +24,19 @@ async function signup(req: Request, res: Response) {
         ResponseCode.FAILURE,
         {},
         'User already exists'
+      );
+    }
+
+    const existingUsername = await userService.getUserByUsername(username);
+
+    if (existingUsername) {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.ALREADY_EXISTS,
+        ResponseCode.FAILURE,
+        {},
+        'Username already exists'
       );
     }
 

@@ -10,7 +10,7 @@ class UserService {
       return user;
     } catch (error) {
       throw new ApiError(
-        'core mobile api',
+        'zacrac api',
         error as string,
         'createUser',
         StatusCode.INTERNAL_SERVER_ERROR
@@ -20,11 +20,11 @@ class UserService {
 
   async getUserById(userId: string) {
     try {
-      const user = await User.findById(userId).populate('plans').populate('reports');
+      const user = await User.findById(userId);
       return user;
     } catch (error) {
       throw new ApiError(
-        'core mobile api',
+        'zacrac api',
         error as string,
         'getUserById',
         StatusCode.INTERNAL_SERVER_ERROR
@@ -39,11 +39,21 @@ class UserService {
       return user;
     } catch (error) {
       throw new ApiError(
-        'core mobile api',
+        'zacrac api',
         error as string,
         'getUserByEmail',
         StatusCode.INTERNAL_SERVER_ERROR
       );
+    }
+  }
+
+  async getUserByUsername(username: string) {
+    try {
+      const user = await User.findOne({ username });
+      if (!user) throw new Error('User not found');
+      return user;
+    } catch (error) {
+      
     }
   }
 
@@ -56,7 +66,7 @@ class UserService {
       return user;
     } catch (error) {
       throw new ApiError(
-        'core mobile api',
+        'zacrac api',
         error as string,
         'updateUser',
         StatusCode.INTERNAL_SERVER_ERROR
@@ -64,16 +74,46 @@ class UserService {
     }
   }
 
-  deleteUser = async(userId: string) => {
+  deleteUserById = async(userId: string) => {
     try {
       const user = await User.findByIdAndDelete(userId);
       if (!user) throw new Error('User not found');
       return user;
     } catch (error) {
       throw new ApiError(
-        'core mobile api',
+        'zacrac api',
         error as string,
-        'deleteUser',
+        'deleteUserById',
+        StatusCode.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  deleteUserByEmail = async(email: string) => {
+    try {
+      const user = await User.findOneAndDelete({ email });
+      if (!user) throw new Error('User not found');
+      return user;
+    } catch (error) {
+      throw new ApiError(
+        'zacrac api',
+        error as string,
+        'deleteUserByEmail',
+        StatusCode.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  deleteUserByUsername = async(username: string) => {
+    try {
+      const user = await User.findOneAndDelete({ username });
+      if (!user) throw new Error('User not found');
+      return user;
+    } catch (error) {
+      throw new ApiError(
+        'zacrac api', 
+        error as string,
+        'deleteUserByUsername',
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }
@@ -85,9 +125,23 @@ class UserService {
       return users;
     } catch (error) {
       throw new ApiError(
-        'core mobile api',
+        'zacrac api',
         error as string,
         'getAllUsers',
+        StatusCode.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  getUsersBatch = async(page = 0, limit = 50) => {
+    try {
+      const users = await User.find().skip(page * limit).limit(limit);
+      return users;
+    } catch (error) {
+      throw new ApiError(
+        'zacrac api',
+        error as string,
+        'getAllUsersInPage',
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }

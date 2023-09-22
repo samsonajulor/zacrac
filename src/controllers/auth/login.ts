@@ -1,6 +1,4 @@
 import { Request, Response } from 'express';
-import path from 'path';
-import fs from 'fs';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../../models/User';
@@ -20,7 +18,6 @@ async function login(req: Request, res: Response) {
         email: req.body.email,
       })
 
-
     if (!user || !bcrypt.compareSync(String(req.body.password), user.password as string)) {
       return apiResponse(
         res,
@@ -33,14 +30,6 @@ async function login(req: Request, res: Response) {
     }
 
     if (!user?.isActive) {
-      if (
-        !user.expiresIn ||
-        new Date(user.expiresIn).toLocaleDateString('en-CA') <=
-          new Date().toLocaleDateString('en-CA')
-      ) {
-        user.expiresIn = new Date(new Date().setDate(new Date().getDate() + 7));
-        await user.save();
-
         const tempToken = jwt.sign(
           { email: req.body.email },
           process.env.JWT_SECRET as string as string,
@@ -50,6 +39,13 @@ async function login(req: Request, res: Response) {
         );
 
         const redirectUrl = `${APP_BASE_URL}/auth/verify?token=${tempToken}`;
+      if (
+        !user.expiresIn ||
+        new Date(user.expiresIn).toLocaleDateString('en-CA') <=
+          new Date().toLocaleDateString('en-CA')
+      ) {
+        user.expiresIn = new Date(new Date().setDate(new Date().getDate() + 7));
+        await user.save();
 
         return apiResponse(
           res,
@@ -66,8 +62,8 @@ async function login(req: Request, res: Response) {
         ResponseType.FAILURE,
         StatusCode.UNAUTHORIZED,
         ResponseCode.FAILURE,
-        {},
-        'Please verify your account by clicking the link we have sent to your email'
+        { redirectUrl },
+        'Please verify your account by clicking the link.'
       );
     }
 

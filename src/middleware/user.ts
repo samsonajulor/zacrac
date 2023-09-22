@@ -66,6 +66,66 @@ const UserMiddleware = {
       );
     }
   },
+  async inspectDeleteUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      await userValidations.validateUser(req.body);
+      next();
+    } catch (error) {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.BAD_REQUEST,
+        ResponseCode.VALIDATION_ERROR,
+        {},
+        error as string
+      );
+    }
+  },
+  async inspectGetUsers(req: Request, res: Response, next: NextFunction) {
+    try {
+      await userValidations.validateGetUsers(req.query as any);
+      next();
+    } catch (error) {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.BAD_REQUEST,
+        ResponseCode.VALIDATION_ERROR,
+        {},
+        error as string
+      );
+    }
+  },
+  async inspectGetUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      await userValidations.validateUser(req.query as any);
+      next();
+    } catch (error) {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.BAD_REQUEST,
+        ResponseCode.VALIDATION_ERROR,
+        {},
+        error as string
+      );
+    }
+  },
+  async inspectUpdateUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      await userValidations.validateUpdateUser(req.body);
+      next();
+    } catch (error) {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.BAD_REQUEST,
+        ResponseCode.VALIDATION_ERROR,
+        {},
+        error as string
+      );
+    }
+  },
 };
 
 export default UserMiddleware;

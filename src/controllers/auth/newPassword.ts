@@ -8,11 +8,11 @@ const { apiResponse } = Toolbox;
 
 async function newPassword(req: Request, res: Response) {
   try {
-    const { pin, tempToken, email } = req.body;
-    if (!pin) throw new Error('Please include pin');
+    const { password, email } = req.body;
+    if (!password) throw new Error('Please include password');
     const user = await User.findOneAndUpdate(
-      { email, tempToken },
-      { pin: bcrypt.hashSync(String(pin), 10) },
+      { email },
+      { password: bcrypt.hashSync(String(password), 10) },
       { new: true, runValidators: true }
     );
     if (!user)
@@ -33,7 +33,7 @@ async function newPassword(req: Request, res: Response) {
       {},
       'Password reset successful'
     );
-  } catch (error) {
+  } catch (error) {;
     return apiResponse(
       res,
       ResponseType.FAILURE,

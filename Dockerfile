@@ -1,14 +1,11 @@
-# Use a Node.js image as the base image
-FROM node:16
+FROM public.ecr.aws/lambda/nodejs:16
+# Alternatively, you can pull the base image from Docker Hub: amazon/aws-lambda-nodejs:12
 
-# Set the working directory
-WORKDIR /app
-
-# Copy the package.json and package-lock.json files to the working directory
+# Assumes your function is named "app.js", and there is a package.json file in the app directory 
 COPY . .
 
-# Install dependencies
-RUN yarn
+# Install NPM dependencies for function
+RUN npm install
 
-# start app
-CMD ["yarn", "dev"]
+# Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
+CMD [ "lambda.handler" ]

@@ -8,17 +8,28 @@ const { apiResponse } = Toolbox;
 
 async function getUser(req: Request, res: Response) {
   try {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-        return apiResponse(
-          res,
-          ResponseType.FAILURE,
-          StatusCode.BAD_REQUEST,
-          ResponseCode.FAILURE,
-          {},
-          'invalid user id'
-        );
+    const { userId, email, username } = req.query;
+
+    let userDetails: any;
+
+    if (email) {
+      userDetails = await userService.getUserByEmail(email as string);
+    } else if (username) {
+      userDetails = await userService.getUserByUsername(username as string);
+      } else {
+
+    if (!mongoose.Types.ObjectId.isValid(userId as string)) {
+      return apiResponse(
+        res,
+        ResponseType.FAILURE,
+        StatusCode.BAD_REQUEST,
+        ResponseCode.FAILURE,
+        {},
+        'invalid user id'
+      );
     }
-      const userDetails: any = await userService.getUserById(req.params.id);
+      userDetails = await userService.getUserById(userId as string);
+    }
 
     if (!userDetails) {
       return apiResponse(

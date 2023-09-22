@@ -42,13 +42,6 @@ const UserSchema = new mongoose.Schema(
       },
     },
     address: String,
-    city: String,
-    state: String,
-    country: {
-      type: String,
-      default: 'NG',
-    },
-    dob: String,
     phoneNumber: {
       type: String,
       match: [/\d{10}$/, 'Please include valid phone number'],
