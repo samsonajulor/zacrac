@@ -4,11 +4,9 @@ import jwt from 'jsonwebtoken';
 import User from '../../models/User';
 import { ResponseCode, ResponseType, StatusCode } from '../../@types';
 import { Toolbox } from '../../utils';
-import { logger, env } from '../../config';
 import { userService } from '../../service';
 
 const { apiResponse } = Toolbox;
-const { APP_BASE_URL } = env;
 
 async function signup(req: Request, res: Response) {
   try {
@@ -43,7 +41,7 @@ async function signup(req: Request, res: Response) {
     const tempToken = jwt.sign({ email }, process.env.JWT_SECRET as string as string, {
       expiresIn: '7d',
     });
-    const redirectUrl = `${APP_BASE_URL}/auth/verify?token=${tempToken}`;
+    const _token = tempToken;
 
     await User.create({
       phoneNumber,
@@ -53,14 +51,12 @@ async function signup(req: Request, res: Response) {
       expiresIn: new Date(new Date().setDate(new Date().getDate() + 7)),
     });
 
-    logger('redirect url', redirectUrl);
-
     return apiResponse(
       res,
       ResponseType.SUCCESS,
       StatusCode.OK,
       ResponseCode.SUCCESS,
-      { redirectUrl },
+      { _token },
       'Registration successful.'
     );
   } catch (error) {

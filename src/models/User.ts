@@ -51,7 +51,6 @@ const UserSchema = new mongoose.Schema(
       required: [true, 'Please include password'],
     },
     tempToken: String,
-    image: String,
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true }
 );

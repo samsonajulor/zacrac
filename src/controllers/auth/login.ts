@@ -12,8 +12,6 @@ const { PROD_BASE_URL, DEV_BASE_URL, NODE_ENV } = env;
 
 async function login(req: Request, res: Response) {
   try {
-    const APP_BASE_URL = NODE_ENV === 'production' ? PROD_BASE_URL as string : DEV_BASE_URL as string;
-
     let user = await User.findOne({
       email: req.body.email,
     });
@@ -38,7 +36,7 @@ async function login(req: Request, res: Response) {
         }
       );
 
-      const redirectUrl = `${APP_BASE_URL}/auth/verify?token=${tempToken}`;
+      const _token = tempToken;
       if (
         !user.expiresIn ||
         new Date(user.expiresIn).toLocaleDateString('en-CA') <=
@@ -52,8 +50,8 @@ async function login(req: Request, res: Response) {
           ResponseType.SUCCESS,
           StatusCode.OK,
           ResponseCode.SUCCESS,
-          { redirectUrl },
-          'Please verify your account'
+          { _token },
+          'Please verify your account using the token provided.'
         );
       }
 
@@ -62,8 +60,8 @@ async function login(req: Request, res: Response) {
         ResponseType.FAILURE,
         StatusCode.UNAUTHORIZED,
         ResponseCode.FAILURE,
-        { redirectUrl },
-        'Please verify your account by clicking the link.'
+        { _token },
+        'Please verify your account using the token provided .'
       );
     }
 

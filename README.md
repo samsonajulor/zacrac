@@ -81,8 +81,7 @@ This will delete the AWS resources created by the Serverless Framework.
 2. Check email and username uniqueness.
 3. Generate a verification token.
 4. Create a user account with a hashed password.
-5. Build a verification URL.
-6. Respond with success and the verification URL.
+5. Respond with success token to be verified before protected routes can be accessed.
 
 
 
@@ -104,8 +103,8 @@ This will delete the AWS resources created by the Serverless Framework.
    - Verify the provided password against the stored hashed password.
 4. Handle user login scenarios:
    - If the user is not found or the credentials are invalid, return an unauthorized response.
-   - If the user is not active, generate a temporary token for email verification and provide a verification URL.
-   - If the user is active, generate a JWT token for authentication and include user information (excluding the password) in the response.
+   - If the user is not active, generates a temporary token for verification.
+   - If the user is active, generates a JWT token for authentication and include user information (excluding the password) in the response.
 
 
 ### User Token Verification
@@ -124,8 +123,8 @@ This will delete the AWS resources created by the Serverless Framework.
 3. Extract the user's email from the verified token.
 4. Retrieve the user from the database based on the email.
 5. Check if the user is already marked as active.
-6. If the user is not active, update their status to active and save the changes.
-7. Return a success response indicating successful registration.
+6. If the user is not active, it updates their status to active and save the changes.
+7. Returns a success response indicating successful registration.
 
 
 ### User Retrieval
@@ -146,8 +145,8 @@ This will delete the AWS resources created by the Serverless Framework.
    - If the `username` parameter is provided, retrieve the user by username.
    - If the `userId` parameter is provided, validate it as a valid MongoDB ObjectId and retrieve the user by ID.
    - else throw an error that the query is not valid.
-4. Return a success response with the retrieved user details.
-5. Handle potential error scenarios, such as invalid user ID or user not found.
+4. Returns a success response with the retrieved user details.
+5. Handles potential error scenarios, such as invalid user ID or user not found.
 
 ### User List Retrieval
 

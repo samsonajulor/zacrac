@@ -31,7 +31,7 @@ async function updatePassword(req: Request, res: Response) {
       StatusCode.OK,
       ResponseCode.SUCCESS,
       {},
-      'Password reset successful'
+      'Password update successful'
     );
   } catch (error) {
     return apiResponse(
