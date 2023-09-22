@@ -20,9 +20,17 @@
    yarn
    ```
 
+3. create a .env file at the base of the repository.
+
+4. Copy the contents of .env.sample into the .env file.
+
+5. Make requests to the endpoints by replacing "{{zacrac_baseurl}}" with "https://350zlhfnjl.execute-api.us-east-1.amazonaws.com/dev/v1.0"
+
+6. ensure to verify the token at "https://350zlhfnjl.execute-api.us-east-1.amazonaws.com/dev/v1.0/auth/verify?token={_token}"
+
 PS: This app was bundled with serverless-http package
 
-3. **Deploy to AWS Lambda:**
+7. **Deploy to AWS Lambda:**
 
    Deploy your Lambda function to AWS using the Serverless Framework:
 
@@ -31,7 +39,7 @@ PS: This app was bundled with serverless-http package
    ```
 
 5. **Access Lambda Function via the generated url:**
-[APP_URL](https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev)
+[APP_URL](https://350zlhfnjl.execute-api.us-east-1.amazonaws.com)
    
 
 ## Cleanup
