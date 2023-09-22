@@ -1,6 +1,6 @@
 # zacrac documentation
 
-[APP_URL](URL: https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev)
+[APP_URL](https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev)
 
 # This API was deployed with Serverless Framework on AWS Lambda and Docker
 
@@ -19,13 +19,9 @@
    npm install
    ```
 
-3. **Update Your Lambda Function:**
+3. 
 
-   Replace the contents of the `handler.js` file with your Lambda function code.
-
-4. 
-
-6. **Deploy to AWS Lambda:**
+4. **Deploy to AWS Lambda:**
 
    Deploy your Lambda function to AWS using the Serverless Framework:
 
@@ -33,8 +29,8 @@
    yarn deploy
    ```
 
-7. **Access Lambda Function:**
-[APP_URL](URL: https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev)
+5. **Access Lambda Function:**
+[APP_URL](https://cuasq4803d.execute-api.us-east-1.amazonaws.com/dev)
    
 
 ## Cleanup
@@ -46,10 +42,6 @@ yarn remove
 ```
 
 This will delete the AWS resources created by the Serverless Framework.
-
-## Troubleshooting
-
-If you encounter any issues during deployment or need further assistance, refer to the Serverless Framework documentation or AWS Lambda documentation for troubleshooting guidance.
 
 ### Scripts
 1. **start**
@@ -72,9 +64,9 @@ If you encounter any issues during deployment or need further assistance, refer 
     - Description: Deploys the application from serverless.yml.
 
 
-Endpoints:
+## Endpoints:
 
-# User Signup
+### User Signup
 
 **HTTP Method:** POST
 **Route:** /auth/signup
@@ -94,7 +86,7 @@ Endpoints:
 
 
 
-# User Login
+### User Login
 
 **HTTP Method:** POST
 **Route:** /auth/login
@@ -116,7 +108,7 @@ Endpoints:
    - If the user is active, generate a JWT token for authentication and include user information (excluding the password) in the response.
 
 
-# User Token Verification
+### User Token Verification
 
 **HTTP Method:** GET
 **Route:** /auth/verify
@@ -136,7 +128,7 @@ Endpoints:
 7. Return a success response indicating successful registration.
 
 
-# User Retrieval
+### User Retrieval
 
 **HTTP Method:** GET
 **Route:** /auth/me
@@ -157,7 +149,7 @@ Endpoints:
 4. Return a success response with the retrieved user details.
 5. Handle potential error scenarios, such as invalid user ID or user not found.
 
-# User List Retrieval
+### User List Retrieval
 
 **HTTP Method:** GET
 **Route:** /users
@@ -173,7 +165,7 @@ Endpoints:
 3. Return a success response with the retrieved user details.
 4. Handle the scenario where no users are found and return a not found response.
 
-# User Update
+### User Update
 
 **HTTP Method:** PUT
 **Route:** /users
@@ -188,7 +180,7 @@ Endpoints:
 2. Use the `userService` to update the user's information based on their `_id` and the data (either email, firstName, lastName, phoneNumber, address, or username) provided in the request body.
 3. Return a success response indicating that the user was updated successfully.
 
-# User Soft Deletion
+### User Soft Deletion
 
 **HTTP Method:** PATCH
 **Route:** /auth/status
@@ -207,7 +199,7 @@ Endpoints:
    - Update the user's `isDeleted` status based on the `deactivate` parameter and add a deletion date and optional reason.
 4. Return a success response indicating whether the account is marked for deletion or restored.
 
-# User Hard Deletion
+### User Hard Deletion
 
 **HTTP Method:** DELETE
 **Route:** /users/delete
@@ -227,7 +219,7 @@ Endpoints:
 4. Return a success response indicating that the user was deleted successfully.
 
 
-# User Password Update
+### User Password Update
 
 **HTTP Method:** POST
 **Route:** /auth/password
@@ -244,7 +236,7 @@ Endpoints:
 4. Update the user's password with the new hashed password using `bcrypt`.
 5. Return a success response indicating that the password reset was successful.
 
-# User Password Reset
+### User Password Reset
 
 **HTTP Method:** POST
 **Route:** /users/reset
@@ -262,7 +254,7 @@ Endpoints:
 5. Return a success response indicating that the password reset was successful.
 
 
-# User Image Upload
+### User Image Upload
 
 **HTTP Method:** POST
 **Route:** /users/upload
