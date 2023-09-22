@@ -34,12 +34,12 @@ export type DeleteUserType = {
   email?: string;
   username?: string;
   userId?: string;
-}
+};
 
 export type GetUsersType = {
   page?: number;
   limit?: number;
-}
+};
 
 export type UpdateUserType = {
   email?: string;

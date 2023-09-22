@@ -9,7 +9,7 @@ const { apiResponse } = Toolbox;
 async function getUsers(req: Request, res: Response) {
   try {
     const { page, limit } = req.query;
-      const userDetails: any = await userService.getUsersBatch(Number(page), Number(limit));
+    const userDetails: any = await userService.getUsersBatch(Number(page), Number(limit));
 
     if (!userDetails) {
       return apiResponse(

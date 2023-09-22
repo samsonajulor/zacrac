@@ -15,7 +15,7 @@ async function verifyToken(req: Request, res: Response) {
     ) as any;
     const user = (await User.findOne({ email })) as any;
     if (user.isActive) {
-      return 
+      return;
     }
     user.isActive = true;
     await user.save();

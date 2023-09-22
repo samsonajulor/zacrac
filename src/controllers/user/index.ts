@@ -9,7 +9,7 @@ const UserController = {
   upload,
   hardDeleteUser,
   getUsers,
-  updateUser
+  updateUser,
 };
 
 export default UserController;

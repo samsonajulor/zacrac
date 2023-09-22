@@ -33,7 +33,7 @@ async function newPassword(req: Request, res: Response) {
       {},
       'Password reset successful'
     );
-  } catch (error) {;
+  } catch (error) {
     return apiResponse(
       res,
       ResponseType.FAILURE,

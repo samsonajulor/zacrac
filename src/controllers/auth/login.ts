@@ -6,17 +6,15 @@ import { env } from '../../config';
 import { ResponseCode, ResponseType, StatusCode } from '../../@types';
 import { Toolbox } from '../../utils';
 
-const { apiResponse } =
-  Toolbox;
+const { apiResponse } = Toolbox;
 
 const { APP_BASE_URL } = env;
 
 async function login(req: Request, res: Response) {
   try {
-    let user =
-      await User.findOne({
-        email: req.body.email,
-      })
+    let user = await User.findOne({
+      email: req.body.email,
+    });
 
     if (!user || !bcrypt.compareSync(String(req.body.password), user.password as string)) {
       return apiResponse(
@@ -30,15 +28,15 @@ async function login(req: Request, res: Response) {
     }
 
     if (!user?.isActive) {
-        const tempToken = jwt.sign(
-          { email: req.body.email },
-          process.env.JWT_SECRET as string as string,
-          {
-            expiresIn: '7d',
-          }
-        );
+      const tempToken = jwt.sign(
+        { email: req.body.email },
+        process.env.JWT_SECRET as string as string,
+        {
+          expiresIn: '7d',
+        }
+      );
 
-        const redirectUrl = `${APP_BASE_URL}/auth/verify?token=${tempToken}`;
+      const redirectUrl = `${APP_BASE_URL}/auth/verify?token=${tempToken}`;
       if (
         !user.expiresIn ||
         new Date(user.expiresIn).toLocaleDateString('en-CA') <=
@@ -71,7 +69,7 @@ async function login(req: Request, res: Response) {
       expiresIn: '30d',
     });
     const userJSON = user.toObject();
-    const { password, _id, ...others } = userJSON;;
+    const { password, _id, ...others } = userJSON;
 
     return apiResponse(res, ResponseType.SUCCESS, StatusCode.OK, ResponseCode.SUCCESS, {
       ...others,

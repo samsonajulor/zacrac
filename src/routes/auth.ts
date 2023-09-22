@@ -4,8 +4,7 @@ import { UserMiddleware } from '../middleware';
 
 const router = express.Router();
 
-const { signup, getUser, login, newPassword, verifyToken, softDeleteUser } =
-  AuthController;
+const { signup, getUser, login, newPassword, verifyToken, softDeleteUser } = AuthController;
 const {
   inspectRegisterUser,
   inspectAuthRoutes,

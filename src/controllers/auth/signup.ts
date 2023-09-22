@@ -60,7 +60,7 @@ async function signup(req: Request, res: Response) {
       ResponseType.SUCCESS,
       StatusCode.OK,
       ResponseCode.SUCCESS,
-      {redirectUrl},
+      { redirectUrl },
       'Registration successful.'
     );
   } catch (error) {

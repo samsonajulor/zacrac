@@ -52,9 +52,7 @@ class UserService {
       const user = await User.findOne({ username });
       if (!user) throw new Error('User not found');
       return user;
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }
 
   async updateUser(userId: string, userData: UserInterface) {
@@ -74,7 +72,7 @@ class UserService {
     }
   }
 
-  deleteUserById = async(userId: string) => {
+  deleteUserById = async (userId: string) => {
     try {
       const user = await User.findByIdAndDelete(userId);
       if (!user) throw new Error('User not found');
@@ -87,9 +85,9 @@ class UserService {
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }
-  }
+  };
 
-  deleteUserByEmail = async(email: string) => {
+  deleteUserByEmail = async (email: string) => {
     try {
       const user = await User.findOneAndDelete({ email });
       if (!user) throw new Error('User not found');
@@ -102,24 +100,24 @@ class UserService {
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }
-  }
+  };
 
-  deleteUserByUsername = async(username: string) => {
+  deleteUserByUsername = async (username: string) => {
     try {
       const user = await User.findOneAndDelete({ username });
       if (!user) throw new Error('User not found');
       return user;
     } catch (error) {
       throw new ApiError(
-        'zacrac api', 
+        'zacrac api',
         error as string,
         'deleteUserByUsername',
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }
-  }
+  };
 
-  getAllUsers = async() => {
+  getAllUsers = async () => {
     try {
       const users = await User.find();
       return users;
@@ -131,11 +129,13 @@ class UserService {
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }
-  }
+  };
 
-  getUsersBatch = async(page = 0, limit = 50) => {
+  getUsersBatch = async (page = 0, limit = 50) => {
     try {
-      const users = await User.find().skip(page * limit).limit(limit);
+      const users = await User.find()
+        .skip(page * limit)
+        .limit(limit);
       return users;
     } catch (error) {
       throw new ApiError(
@@ -145,7 +145,7 @@ class UserService {
         StatusCode.INTERNAL_SERVER_ERROR
       );
     }
-  }
+  };
 }
 
 export default new UserService();
