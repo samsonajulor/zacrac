@@ -2238,6 +2238,20 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
+"@types/aws-lambda@*":
+  version "8.10.121"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.121.tgz#2702b77a77fadea98bbef43502a289882361854b"
+  integrity sha512-Y/jsUwO18HuC0a39BuMQkSOd/kMGATh/h5LNksw8FlTafbQ3Ge3578ZoT8w8gSOsWl2qH1p/SS/R61vc0X5jIQ==
+
+"@types/aws-serverless-express@^3.3.5":
+  version "3.3.5"
+  resolved "https://registry.yarnpkg.com/@types/aws-serverless-express/-/aws-serverless-express-3.3.5.tgz#3eb6cc3491f5a8d6f47a9a68dd82415d1d9e2961"
+  integrity sha512-f0zxBP2dGs07kOWKMQC1dWgQ/+wk7nfQ4zaHG65xTPxhAhlRwiJhfTHsUDEFE7v9iYU5s0ewznhyspE92YW9EA==
+  dependencies:
+    "@types/aws-lambda" "*"
+    "@types/express" "*"
+    "@types/node" "*"
+
 "@types/bcryptjs@^2.4.2":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.2.tgz#e3530eac9dd136bfdfb0e43df2c4c5ce1f77dfae"

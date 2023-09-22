@@ -14,7 +14,6 @@
     "copy-files": "cp -r ./src/templates/ ./dist/ && cp -r ./src/assets/ ./dist/",
     "build-ts": "tsc",
     "format": "cross-env prettier --write ./**/*.{js,ts,md,json} --config ./.prettierrc",
-    "updateUsers": "node src/updateUser --update",
     "deploy": "serverless deploy"
   },
   "keywords": [],
@@ -86,6 +85,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.12.17",
     "@babel/register": "^7.5.5",
+    "@types/aws-serverless-express": "^3.3.5",
     "@types/bcryptjs": "^2.4.2",
     "@types/chai": "^4.2.15",
     "@types/cookie-parser": "^1.4.3",
